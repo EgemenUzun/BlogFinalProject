@@ -1,0 +1,13 @@
+﻿@model Blog.Models.CommentListViewModel
+<div class="Container">
+    <div class="card-header"> Comments</div>
+@foreach (var comment in Model.comments)
+{
+        <div class="card mt-3 mb-3" style="max-width:50%;">
+            <div class="card-body ms-5">
+            <h5 class="card-title">@comment.Username</h5>
+            <p class="card-text ms-5">@comment.comment</p>
+        </div>
+    </div>
+}
+</div>

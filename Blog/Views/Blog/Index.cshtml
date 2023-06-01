@@ -1,0 +1,25 @@
+﻿@model Blog.Models.ShowTitlesViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div class="row">
+    @foreach (var post in Model.posts)
+    {
+
+        <div class="card" style="width: 18rem;">
+
+            <a asp-controller="Home" asp-action="SeePost" asp-route-postId="@post.PostID" class="text-decoration-none">
+                <img src="@post.Image" width="262px" height="262px" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@post.Title</h5>
+                    <p class="card-text">@post.Summary</p>
+                    <p class="blockquote-footer">@post.DatePosted</p>
+                    <a class="btn btn-dark btn-sm  ms-5" asp-controller="Blog" asp-action="Update" asp-route-PostID="@post.PostID" class="text-decoration-none">Update</a>
+                    <a class="btn btn-danger btn-sm" asp-controller="Blog" asp-action="Delete" asp-route-PostID="@post.PostID" class="text-decoration-none">Delete</a>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+

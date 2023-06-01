@@ -1,0 +1,61 @@
+﻿@model Blog.Models.PostViewModel
+@{
+    ViewData["Title"] = "SeePost";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<header class="masthead" style="background-image: url('assets/img/post-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>@Model.blogPost.Title</h1>
+                    <h2 class="subheading">@Model.blogPost.Summary</h2>
+                    <span class="meta">Posted by<a asp-controller="Home" asp-action="ShowAuthorPosts" asp-route-authorId="@Model.blogPost.AuthorId"> @Model.blogPost.Author </a>on @Model.blogPost.DatePosted </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content-->
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                @Model.blogPost.Content
+            </div>
+        </div>
+    </div>
+</article>
+
+<!---deneme --->
+
+<form method="post" asp-controller="Blog" asp-action="Comment" asp-route-postId="@Model.blogPost.PostID">
+    <section style="background-color: #eee;">
+        <div class="container my-5 py-5 text-dark">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-6">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <div class="d-flex flex-start w-100">
+                                <div class="w-100">
+                                    <h5>Add a comment</h5>
+                                    <div class="form-outline">
+                                        <textarea class="form-control" id="textAreaExample" rows="4" name="comment"></textarea>
+                                        <label class="form-label" for="textAreaExample">What is your view?</label>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <button type="submit" class="btn btn-danger" type="submit">
+                                            Send <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+   @await Component.InvokeAsync("Comment", new{PostId=Model.blogPost.PostID})
+

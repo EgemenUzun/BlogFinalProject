@@ -1,0 +1,17 @@
+﻿@model Blog.Models.UserSummaryViewModel
+<ul class="dropdown-menu dropdown-menu-end">
+    @if (!String.IsNullOrEmpty(Model.Username))
+    {
+        <li class="nav-item">
+            <a>Welcome @Model.Username</a>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Blog" asp-action="Index">Settings</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="link-dark" asp-controller="Account" asp-action="LogOff">Log Out</a>
+        </li>
+    }
+
+</ul>
